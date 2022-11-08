@@ -1,35 +1,31 @@
-let itemlist=document.querySelector('#items')
-//console.log(itemlist.parentNode)
-//itemlist.parentNode.style.backgroundColor='red'
-//2
-console.log(itemlist.firstElementChild)
-console.log(itemlist.lastElementChild)
-console.log(itemlist.firstChild)
-console.log(itemlist.lastChild)
-console.log(itemlist.nexteSibling)
-console.log(itemlist.nextElementSibling)
-console.log(itemlist.previousSibling)
-console.log(itemlist.previousElementSibling)
+let form=document.getElementById('addForm')
+let itemlist=document.getElementById('items')
+form.addEventListener('submit', addItem)
+itemlist.addEventListener('click', removeItem)
+function addItem(e){
+    e.preventDefault()
+ var newItem=document.getElementById('item').value
+ var li=document.createElement('li')
+ li.className='list-group-item'
+ li.appendChild(document.createTextNode(newItem))
+ let deletebtn=document.createElement('button')
+deletebtn.className="btn btn-danger btn-sm float-right delete"
+deletebtn.appendChild(document.createTextNode('X'))
+li.appendChild(deletebtn)
+ itemlist.appendChild(li)
 
+ let editbtn=document.createElement('button')
+editbtn.className="btn btn-danger btn-sm float-right delete"
+editbtn.appendChild(document.createTextNode('EDIT'))
+li.appendChild(editbtn)
+ itemlist.appendChild(li)
+}
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure?')){
+            var li=e.target.parentElement
+            itemlist.removeChild(li);
 
-
-var newDiv=document.createElement('div')
-console.log(newDiv)
-newDiv.className='hello'
-newDiv.id='hello9'
-newDiv.setAttribute('title','hellodiv')
-var newDivtext=document.createTextNode('hEllo')
-newDiv.appendChild(newDivtext)
-var container=document.querySelector('header .container')
-var h1=document.querySelector('header h1')
-console.log(newDivtext)
-container.insertBefore(newDiv,h1)
-
-var newDiv=document.createElement('div')
-console.log(newDiv)
-newDiv.className='hello'
-newDiv.id='hello9'
-newDiv.setAttribute('title','hellodiv')
-var newDivtext=document.createTextNode('hEllo')
-newDiv.appendChild(newDivtext)
-
+        }
+    }
+}
